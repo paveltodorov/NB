@@ -20,11 +20,12 @@ func calculate(a:Double,e:Double,ideg: Double,t2000deg:Double,
     print("l = \(l)")
     var u:Double = l + e*sin(l + e*sin(l))
     print("u = \(u)")
-    var L:Double = mu*sqrt(gama*a)
+    var m = 1.00
+    var L:Double = m*sqrt(gama*a)
     print("L = \(L)")
-    var G:Double = mu*sqrt(gama*a)*sqrt(1 - e*e)
+    var G:Double = m*sqrt(gama*a)*sqrt(1 - e*e)
     print("G = \(G)")
-    var Theta:Double = mu*sqrt(gama*a)*sqrt(1 - e*e)*cos(i)
+    var Theta:Double = m*sqrt(gama*a)*sqrt(1 - e*e)*cos(i)
     print("Theta = \(Theta)")
 }               
 calculate(a:0.387, e:0.205,ideg:7.004,t2000deg:252.25, thetadeg: 48.33, thetaPlusgdeg:77.458)
