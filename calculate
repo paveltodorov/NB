@@ -1,0 +1,31 @@
+func calculate(a:Double,e:Double,i:Double,t2000:Double,
+               theta:Double,thetaPlusg:Double,tb:Double = 1995 + 11/12)
+{
+    print("")
+    var mu:Double = 0
+    var gama:Double = sqrt(1 + mu)
+    var n:Double = pow(a,-3/2)*sqrt(1 + mu)
+    print("n = \(n)")
+    var lambda2000:Double = n*(tb - t2000) + thetaPlusg
+    print("lambda2000 = \(lambda2000)")
+    var lb:Double = -thetaPlusg + lambda2000 + n*(tb - t2000)
+    print("lb = \(lb)")
+    var l:Double = n*(tb - t2000)
+    print("l = \(l)")
+    var u:Double = l + e*sin(l + e*sin(l))
+    print("u = \(u)")
+    var L:Double = mu*sqrt(gama*a)
+    print("L = \(L)")
+    var G:Double = mu*sqrt(gama*a)*sqrt(1 - e*e)
+    print("G = \(G)")
+    var Theta:Double = mu*sqrt(gama*a)*sqrt(1 - e*e)*cos(i)
+    print("Theta = \(Theta)")
+}               
+calculate(a:0.387, e:0.205,i:7.004,t2000:252.25, theta: 48.33, thetaPlusg:77.458)
+calculate(a:0.723, e:0.006,i:3.395,t2000:181.979,theta:76.679,thetaPlusg:131.602)
+calculate(a:1.000, e:0.017,i:0.000,t2000:100.465,theta: 0.00,  thetaPlusg:102.937)
+calculate(a:1.524, e:0.093,i:1.850,t2000:-4.553, theta:  49.560,thetaPlusg:-23.943)
+calculate(a:5.203, e:0.048,i:1.304,t2000:34.396, theta: 100.473,thetaPlusg:14.728)
+calculate(a:9.534, e:0.056,i:2.486,t2000:49.954, theta: 113.662,thetaPlusg:92.599)
+calculate(a:19.189,e:0.046,i:0.772,t2000:313.238,theta: 74.017,thetaPlusg:170.954)
+calculate(a:30.070,e:0.009,i:1.770,t2000:-55.12, theta: 131.784,thetaPlusg:44.964)
