@@ -1,0 +1,77 @@
+func multiplyMatrices(_ firstMatrix:[[Double]],_ secondMatrix:[[Double]]) ->[[Double]]
+{
+  var mult:[[Double]] = [[0,0,0],[0,0,0],[0,0,0]]
+   for i in 0..<firstMatrix.count
+	{
+    for j in 0..<secondMatrix[0].count
+		{
+       for k in 0..<firstMatrix[0].count
+			{
+				mult[i][j] += firstMatrix[i][k] * secondMatrix[k][j];
+			}
+		}
+	}
+	return mult
+}
+
+var pi:Double = 3.1415
+func calculate(a:Double,e:Double,ideg: Double,l2000deg:Double,
+               thetadeg:Double,thetaPlusgdeg:Double,tbdeg:Double = 0*180/pi)
+{
+    print("")
+    var i = ideg*pi/180
+    var l2000 =  l2000deg*pi/180
+    var theta = thetadeg*pi/180
+    var thetaPlusg = thetaPlusgdeg*pi/180
+    var tb = tbdeg*pi/180
+    var mu:Double = 0
+    var gama:Double = 1
+    var n:Double = pow(a,-3/2)*sqrt(1 + mu)
+    var g = thetaPlusg - theta 
+    print("n = \(n)")
+    var lambda2000 = l2000 + thetaPlusg
+    //var lambda2000:Double = n*(tb - t2000) + thetaPlusg
+    print("lambda2000 = \(lambda2000)")
+    var t2000 = (thetaPlusg - lambda2000)/n - tb
+    print("t2000 = \(t2000)")
+    var lambdab = lambda2000 + n*(tb - t2000)
+    print("lambdab = \(lambdab)")
+    var lb:Double = -thetaPlusg + lambda2000 + n*(tb - t2000)
+    print("lb = \(lb)")
+    var u:Double = lb + e*sin(lb + e*sin(lb))
+    print("ub = \(u)")
+    var matrix1:[[Double]] = [[cos(theta),-sin(theta),0],[sin(theta),cos(theta),0],[0,0,1]]
+    var matrix2:[[Double]] = [[1,0,0],[0,cos(i),-sin(i)],[0,sin(i),cos(i)]]
+    var matrix4:[[Double]] = [[cos(g),-sin(g),0],[sin(g),cos(g),0],[0,0,1]]
+    var matrix3:[[Double]] = multiplyMatrices(matrix1,matrix2)
+    var matrix5:[[Double]] = multiplyMatrices(matrix3,matrix4)
+    var matrixhelp = 1/(sqrt(a)*(1 - e)*cos(u))
+    var matrix6:[[Double]] = [[-sin(u)*matrixhelp,a*cos(u)-e],
+                              [sqrt(1-e*e)*cos(u)*matrixhelp,a*sqrt(1-e*e)*sin(u)],
+                              [0,0]]
+    var matrix7 = multiplyMatrices(matrix5,matrix6)
+    print(matrix7)
+    var m = 0.000
+    var L:Double = m*sqrt(gama*a)
+    print("L = \(L)")
+    var G:Double = m*sqrt(gama*a)*sqrt(1 - e*e)
+    print("G = \(G)")
+    var Theta:Double = m*sqrt(gama*a)*sqrt(1 - e*e)*cos(i)
+    print("Theta = \(Theta)")
+    var ksi = sqrt(2*(L-G))*cos(g + theta)
+    print("ksi = \(ksi)")
+    var eta = -sqrt(2*(L-G))*sin(g + theta)
+    print("eta = \(eta)")
+    var p = sqrt(2*(G - Theta))*cos(theta)
+    print("p = \(p)")
+    var q = sqrt(2*(G - Theta))*sin(theta)
+    print("q = \(q)")
+}               
+calculate(a:0.387, e:0.205,ideg:7.004,l2000deg:252.25, thetadeg: 48.33, thetaPlusgdeg:77.458)
+//calculate(a:0.723, e:0.006,ideg:3.395,l2000deg:181.979,thetadeg:76.679,thetaPlusgdeg:131.602)
+//calculate(a:1.000, e:0.017,ideg:0.000,l2000deg:100.465,thetadeg: 0.00,  thetaPlusgdeg:102.937)
+//calculate(a:1.524, e:0.093,ideg:1.850,l2000deg:-4.553, thetadeg:  49.560,thetaPlusgdeg:-23.943)
+//calculate(a:5.203, e:0.048,ideg:1.304,l2000deg:34.396, thetadeg: 100.473,thetaPlusgdeg:14.728)
+//calculate(a:9.534, e:0.056,ideg:2.486,l2000deg:49.954, thetadeg: 113.662,thetaPlusgdeg:92.599)
+//calculate(a:19.189,e:0.046,ideg:0.772,l2000deg:313.238,thetadeg: 74.017,thetaPlusgdeg:170.954)
+//calculate(a:30.070,e:0.009,ideg:1.770,l2000deg:-55.12, thetadeg: 131.784,thetaPlusgdeg:44.964)
