@@ -83,7 +83,7 @@ func calculate(name:String,a:Double,e:Double,ideg: Double,l2000deg:Double,
     var eta = -sqrt(2*(L-G))*sin(g + theta)
     var p = sqrt(2*(G - Theta))*cos(theta)
     print("p = \(p)")
-    var q = sqrt(2*(G - Theta))*sin(theta)
+    var q = - sqrt(2*(G - Theta))*sin(theta)
     print("lambdab = \(lambdab)")
     print("eta = \(eta)")
     print("q = \(q)")
