@@ -71,7 +71,7 @@ func calculate(a:Double,e:Double,ideg: Double,l2000deg:Double,
     print("eta = \(eta)")
     var p = sqrt(2*(G - Theta))*cos(theta)
     print("p = \(p)")
-    var q = sqrt(2*(G - Theta))*sin(theta)
+    var q = -sqrt(2*(G - Theta))*sin(theta)
     print("q = \(q)")
 }               
   calculate(a:0.38709927, e:0.20563593,ideg:7.00497902, l2000deg:252.25032350, thetadeg: 48.33076593, thetaPlusgdeg:77.45779628 ,mu1:0.16601)
